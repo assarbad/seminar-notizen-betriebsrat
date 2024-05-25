@@ -1,0 +1,163 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = de_DE_OLDSPELL
+% !TEX TS-program = lualatex
+\ifdefined\directlua\else
+	\errmessage{LuaTeX is required to typeset this document}
+	\csname @@end\expandafter\endcsname
+\fi
+\documentclass[version=last,paper=A4,fontsize=11pt,DIV=18]{scrartcl}
+\usepackage{scrlayer-scrpage}
+\usepackage{polyglossia}
+\setmainlanguage[spelling=old,variant=german]{german}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage{fontspec-luatex}
+\usepackage{tabularray}
+\usepackage{pdfpages}
+\usepackage{csquotes}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+\definecolor{linkblue}{rgb}{0, 0, 127}
+
+\hypersetup{
+	bookmarksnumbered=false,
+	breaklinks=false,
+	colorlinks=true,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	menucolor=black,
+	urlcolor=linkblue,
+	pdftitle={Notizen aus dem ifb-Seminar Betriebsrat I im Mai 2024},
+	pdfcreator={TeXlive + LuaLaTeX},
+	pdfkeywords={Betriebsrat,Betriebsverfassungsgesetz,BetrVG},
+	pdflang={de},
+	pdfpagemode=UseNone,
+	pdfpagelayout=OneColumn,
+	pdfstartview=FitH,
+	pdfencoding=auto,
+	psdextra,
+}
+
+\usetikzlibrary{positioning,arrows.meta}
+
+%\pagestyle{empty}
+%\renewcommand*{\titlepagestyle}{empty}
+\setlength{\parindent}{0pt}
+%%\usepackage{lua-visual-debug}
+
+\begin{document}
+
+Diese Notizensammlung ist während der Teilnahme am ifb-Seminar \enquote{Betriebsrat I} entstanden aus Äußerungen der Seminarleiterin zu Fragen oder ihren Anmerkungen.
+
+\section*{Rangordnung der Normen}
+
+\begin{center}
+	\includegraphics[width=.9\textwidth]{Rangordnung-der-Normen.pdf}
+\end{center}
+
+Siehe auch Wikipedia-Artikel \href{https://de.wikipedia.org/wiki/Normenpyramide_im_Arbeitsrecht}{\faIcon{wikipedia-w}~Normenpyramide im Arbeitsrecht}
+
+\section*{Begriffe und Abkürzungen}
+
+\begin{description}
+	\item[AG] Arbeitgeber
+	\item[AN] Arbeitnehmer; definiert in \S~5~BetrVG, aber auch implizit im BGB -- Besonderheit im BetrVG: leitende Angestellte werden definiert und gelten nicht als vom BR vertretene AN
+	\item[ArbR] Arbeitsrecht; geteilt in \faIcon{long-arrow-alt-right}~IndividualArbR und \faIcon{long-arrow-alt-right}~KollektivArbR
+	\item[betriebliche Übung] bezeichnet im Prinzip \enquote{Gewohnheitsrechte}; ein Beispiel wären alljährlich gezahlte 13. Monatsgehälter, welche ohne Klausel daherkommen, daß sich aus der Zahlung kein zukünftiger Anspruch ergibt -- nach ein paar solcher Zahlungen \emph{ohne} Klausel, wird das 13. Monatsgehalt ggf. einklagbar.
+	\item[BetrVG] Betriebsverfassungsgesetz, definiert alles rund um die Betriebsratstätigkeit; enthält eigenen \enquote{Arbeitnehmer}-Begriff mit klarer Definition um Trennschärfe von \enquote{Leitenden Angestellten} herzustellen, die vom BR nicht vertreten werden!
+	\item[BGB] Bürgerliches Gesetzbuch, bspw. referenziert zu allgemeinen Vertragsthemen
+	\item[BR] Betriebsrat
+	\item[BRM] Betriebsratsmitglied(er); zu unterscheiden nach ordentlichen Betriebsratsmitgliedern und Ersatzbetriebsratsmitgliedern
+	\item[BRV] Betriebsratsvorsitzender
+	\item[BV] Betriebsvereinbarung: eine vertragliche Vereinbarung zwischen AG und und BR -- betreffs aller AN im Betrieb -- welche in der Rangordnung über einem AV und unter einem TV angesiedelt ist\\
+	\textbf{NB:} keine BV ohne Anwalt ausarbeiten! Vorgelegten BV die vom AG ausgearbeitet wurden immer mit großer Skepsis begegnen.\\
+	\textbf{Achtung:} immer einen Anwalt mit Spezialisierung auf KollektivArbR wählen!\\
+	\textbf{Auch wichtig:} BVs thematisch klein halten, da bspw. einzeln kündbar.
+	\item[EBRM] Ersatzbetriebsratsmitglied(er), werden nach einem definierten Modus und in der Reihenfolge\footnote{nach Wahllisten!} in der sie bei einem größeren BR in den BR eingezogen \emph{wären} vom BRV geladen wenn ein Verhinderungsgrund vorliegt, weshalb ein ordentliches BRM nicht an einer BR-Sitzung teilnehmen kann\\
+	\textbf{NB:} hierbei ist \S~15~BetrVG zu beachten (\enquote{Minderheitengeschlecht})!
+	\item[GBR] Gesamtbetriebsrat, notwendig (verpflichtend!) wenn ein Unternehmen mehrere Betriebe hat, in welchen sich BR konstituiert haben
+	\item[EBR] Europäischer Betriebsrat (nach EU-Recht) kann (freiwillig) zwischen Betriebsräten eines Konzerns innerhalb der EU gegründet werden
+	\item[Gewsch] Gewerkschaft
+	\item[HausTV] Haustarifvertrag wird zwischen \emph{einem} AG und einer Gewsch abgeschlossen; andere Verträge gelten bspw. branchenweit
+	\item[IndividualArbR] Individualarbeitsrecht bezeichnet jene Rechtsbereiche des Arbeitsrechts bei denen es um das individuelle Verhältnis von AG zu AN geht
+	\item[KBR] Konzernbetriebsrat (nach dt. Recht!), kann (freiwillig) gegründet werden wenn mehrere Betriebsräte innerhalb von Unternehmen desselben Konzerns existieren
+	\item[KollektivArbR] Kollektivarbeitsrecht bezeichnet jene Rechtsbereiche im Arbeitsrecht bei denen es um mehrere AN geht, bspw. das BetrVG
+	\item[oBRM] ordentliches BRM in Abgrenzung von EBRM
+	\item[Regelungsabsprache] eine Verabredung des BR mit dem AG über die Verfahrensweise in bestimmten Belangen; nicht so bindend wie eine BV, auch kein förmlicher Vertrag im Sinne des BGB
+	\item[StGB] Strafgesetzbuch; relevant falls man sich etwas zuschulden kommen läßt, bspw. die Offenlegung von Sachverhalten die der Geheimhaltung unterliegen
+	\item[TV] Tarifvertrag, üblicherweise branchenweit ausgehandelt zwischen Arbeitgeberverbänden und Gewerkschaften, vgl. \faIcon{long-arrow-alt-right}~HausTV
+	\item[Verhinderungsgrund] wird unterschieden nach \emph{tatsächlichen} -- bspw. Urlaub, Krankheit, usw. -- und \emph{rechtlichem} -- bspw. BRM ist unmittelbar und individuell von dem Beschluß betroffen
+	\item[VO] Verordnung
+\end{description}
+
+\section*{Arbeitsrecht (ArbR)}
+
+\begin{center}
+	\begin{tikzpicture}[>=Stealth,rect/.style={draw=black, 
+			rectangle, 
+			fill=lightgray,
+			fill opacity=0.2,
+			text opacity=1,
+			minimum width=100pt, 
+			minimum height = 50pt, 
+			align=center}]
+		\node[rect] (a1) {Individualarbeitsrecht};
+		\node[rect,right=100pt of a1,thick] (a2) {Kollektivarbeitsrecht\\inkl. BetrVG};
+		\path (a1) -- (a2) node[midway,below=60pt,rect] (a3) {Arbeitsrecht};
+		\draw[<-,thick,gray] (a1.south)--(a3.west)node[midway,sloped,below]{\tiny einzelner Arbeitnehmer};
+		\draw[<-,thick,gray] (a2.south)--(a3.east)node[midway,sloped,below]{\tiny viele Arbeitnehmer};
+	\end{tikzpicture}
+\end{center}
+
+\section*{Zufällig aufgeschnappte Fakten}
+
+\begin{itemize}
+	\item Geschäftsführung \emph{immer} fragen, fragen, fragen! Fragen möglichst in einer Form stellen die wenig Spielraum bei der Antwort läßt.
+	\begin{itemize}
+		\item AG ist zur wahrheitsgemäßen Beantwortung verpflichtet soweit es die Mitbestimmungsrechte des BR betrifft
+		\item Die Würdigung eines rechtlichen Sachverhalts könnte bspw. zu einer schwammigen Antwort führen:
+		\begin{itemize}
+			\item Wie viele Arbeitnehmer nach \S~60~BetrVG (1) gibt es im Betrieb?
+			\item Trifft der \S~60~BetrVG auf unsere Werksstudenten zu?
+		\end{itemize}
+		Besser:
+		\begin{itemize}
+			\item Wie viele AN unter 18 Jahren gibt es im Betrieb?
+			\item Wie viele AN zwischen 18 und 25 Jahren gibt es im Betrieb?
+		\end{itemize}
+		\item Fragen immer mit (angemessenen) Fristen zur Beantwortung versehen, bspw. zwei Wochen
+	\end{itemize}
+	\item Gewerkschaftsgründung ist nicht trivial, insofern kann man auch nicht \enquote{einfach} eine Gewerkschaft gründen um bspw. einen Tarifvertrag zu erzielen
+	\item Gewerkschaften sind nach Branchen organisiert
+	\item Tarifverträge handelt normalerweise eine Gewerkschaft mit den Arbeitgeberverbänden aus, während der Haustarifvertrag zwischen einer Gewerkschaft und einem Arbeitgeber geschlossen wird\footnote{Beispiele sind große Firmen wie die \textsc{Deutsche Bahn}, Autobauer usw.}
+	\item Generell gilt der Gleichbehandlungsgrundsatz, es sei denn \emph{sachliche Gründe} stehen dagegen
+	\item Bei einem Personalgespräch -- ein definierter Begriff -- kann \emph{immer} ein BRM dabei sein, wobei der betroffene AN diesen hinzuziehen muß!
+	\begin{itemize}
+		\item Freie Wahl des BRM
+		\item Ggf. ein \enquote{Gespräch} bei dem klar wird daß es zu einem Personalgespräch ausartet -- auch AN-seitig!!! -- abbrechen um in einem Folgetermin unter Anwesenheit eines BRM zu vereinbaren
+	\end{itemize}
+	\item Betrieb $\neq$ Unternehmen, BR organisieren sich auf Betriebsebene, im Unternehmen \emph{muß} es einen GBR geben wenn in mehreren Betrieben des Unternehmens ein BR existiert\footnote{Begründung ist grob gesagt, daß damit BV zu gleichen Sachverhalten nicht einzeln ausverhandelt werden müssen}
+	\begin{itemize}
+		\item \href{https://www.northdata.com}{Suche über europäische Firmendaten: northdata.com}
+		\item \href{https://www.handelsregister.de}{Firmendaten bereitgestellt durch die Bundesländer: handelsregister.de}
+	\end{itemize}
+	\item Ein Aufhebungsvertrag geht am BR vorbei, auch kein Mitbestimmungsrecht seitens BR
+	\item Bei technischen Werkzeugen die AAN betreffend besteht quasi immer ein Mitbestimmungsrecht
+	\item Ausgestaltung der Kostenübernahme für den Sachverständigen (\enquote{Anwalt}) -- bspw. bei der Ausarbeitung einer BV -- ist individuell zwischen BR und AG vereinbart. Einige AG geben quasi Blankoscheck, andere fordern Bezug zu einer bestimmten BV.
+	\item Die Einigungsstelle anzurufen kann als Druckmittel genutzt werden.
+	\item Eine Vergütungsordnung wäre eine BV. Sie ersetzt keinen Tarifvertrag, aber sie ermöglicht innerbetriebliche Absprachen zwischen AN, vertreten durch den BR, und AG.
+	\item Der Personal- und Betriebsausschuß haben u.U. das Recht auf Einblick in die Bruttoentgeltlisten (\enquote{Gehaltslisten})
+	\item Anwesenheitslisten sollten bspw. häufig geladene EBRM direkt mit auflisten. Bei Verhinderung jeweils ein \enquote{v} für \enquote{verhindert} eintragen, ansonsten Teilnehmer jeweils unterschreiben lassen.
+	\begin{itemize}
+		\item Anwesenheitslisten geben mittelbar Auskunft über die Beschlußfähigkeit, weshalb die Anfangs- und Endzeit der Sitzung enthalten sein sollte, bzw. bei teilweiser Abwesenheit auch auf die BRM heruntergebrochen.
+	\end{itemize}
+	\item Es ist klar getrennt welche Sachverhalte zur Einigungsstelle und welche zum Gericht geht -- auch Arbeitsrichter werden zunächst eine außergerichtliche Einigung anstreben (\enquote{Gütetermin})
+	\item BV kann es auf allen BR-Ebenen -- EBR, KBR, GBR, BR -- geben
+	\item Klausurtagungen des BR können eine geeignete Maßnahme sein um Prioritäten zu klären usw.
+	\item Im Konzern gibt es keinen \enquote{guten} und \enquote{bösen} AG. AG ist AG und es spielt keine Rolle ob die \enquote{Ansagen} aus dem Konzern auf Betriebsebene durchgereicht werden.
+\end{itemize}
+
+\end{document}

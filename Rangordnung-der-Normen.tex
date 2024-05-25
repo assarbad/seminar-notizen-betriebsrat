@@ -1,0 +1,76 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = de_DE_OLDSPELL
+% !TEX TS-program = lualatex
+\ifdefined\directlua\else
+	\errmessage{LuaTeX is required to typeset this document}
+	\csname @@end\expandafter\endcsname
+\fi
+\documentclass{standalone}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage{fontspec-luatex}
+\usepackage{tikz}
+
+\usetikzlibrary{calc,shapes,positioning,intersections,arrows.meta,decorations.pathreplacing,calligraphy}
+
+\tikzset{%
+	tri/.style={%
+		regular polygon,
+		regular polygon sides=3, %% For fun, vary this number at will
+		minimum size=#1,
+		draw,
+		thick,
+		anchor=north
+	},
+	ptext/.style={font=\bfseries,align=center,text width=0.8*\pyrsize}
+}
+
+\NewDocumentCommand{\pyramidshadeinner}{O{pyrmd}mmm}{% #2 size; #3 base shade; #4 entries
+	\pgfmathsetmacro{\incrrate}{0.75}% The rate at which the triangles decrease in size
+	\coordinate (T#1) at (0,0);
+	\foreach \test [count=\testnum from 1] in {#4}{\xdef\tot{\testnum}}%
+	\pgfmathsetmacro{\incr}{#2/\tot}
+	\foreach \step [count=\stepnum from 0] in {#4}{%
+		\pgfmathsetlengthmacro{\pyrsize}{#2-\incrrate*\stepnum*\incr}
+		\pgfmathsetmacro{\shade}{(\tot-\stepnum)/\tot*100}
+		\node[tri=\pyrsize,fill=#3!\shade] (T#1\stepnum) at (T#1) {};
+		\pgfmathsetlengthmacro{\lift}{0.05*\incr*\incrrate}%
+		\node[above=\lift of T#1\stepnum.south,ptext] {\step\strut};
+	}%
+}
+
+\NewDocumentCommand{\pyramidshade}{O{pyrmd}mmm}{% #2 size; #3 base shade; #4 entries
+	\begin{tikzpicture}[remember picture]
+		\pyramidshadeinner[#1]{#2}{#3}{#4}
+	\end{tikzpicture}%
+}
+%% https://tex.stackexchange.com/a/560002
+
+\begin{document}
+	\begin{tikzpicture}
+		\pyramidshadeinner[rangordnung]{.8\textwidth}{gray!70!red!50!white}{Weisungs- und Direktionsrecht des Arbeitg.,Arbeitsverträge \& betriebliche Übung,Betriebsvereinbarungen,Tarifverträge,Verordnungen,Gesetze,Grundgesetz,EU-Recht}
+		
+		% Pfeil: Rangordnung
+		\coordinate(rangoben) at ([xshift=.4\textwidth-1em] Trangordnung0.south);
+		\coordinate(rangunten) at ([xshift=.4\textwidth-1em] Trangordnung7.north);
+		\draw[-{Stealth[length=4em,open]},gray,solid,line width=.035\textwidth] (rangoben) -- (rangunten);
+		\node[rotate=90,font=\bfseries,white] at ($(rangoben)!0.5!(rangunten)$) {Rangordnung};
+		
+		% Pfeil: Günstigkeitsprinzip
+		\coordinate(guenstigoben) at ($(rangoben)+(3em,0)$);
+		\coordinate(guenstigunten) at ($(rangunten)+(3em,0)$);
+		\draw[-{Stealth[length=4em,open]},gray,solid,line width=.035\textwidth] (guenstigunten) -- (guenstigoben);
+		\node[rotate=90,font=\bfseries,white] at ($(guenstigoben)!0.5!(guenstigunten)$) {Günstigkeitsprinzip};
+		
+		% Pfeil: kollektiver Günstigkeitsvergleich
+		\coordinate(guenstigvgloben) at ($(guenstigoben)+(2em,+1em)$);
+		\coordinate(guenstigvglunten) at ($(guenstigunten)+(2em,-1em)$);
+		\draw[-{Stealth[round]},thick,gray,densely dotted,inner sep=2pt] (guenstigvgloben) -- (guenstigvglunten) node[midway,rotate=90,fill=white] {\small kollektiver Günstigkeitsvergleich};
+		
+		% Pfeil: individueller Günstigkeitsvergleich
+		\draw[-{Stealth[round]},thick,gray,dotted] ($(guenstigvglunten)+(1em,-1em)$) -- ($(guenstigvgloben)+(1em,+1em)$) node[midway,rotate=90,fill=white,inner sep=2pt] {\footnotesize individueller Günstigkeitsvergleich};
+		
+		% Geschweifte Klammer: dt. Recht
+		\draw[pen colour={gray},decorate,decoration={calligraphic brace,amplitude=6pt,raise=2pt},gray,thick] ($(Trangordnung0.south)-(.35\textwidth,0)$) -- ($(Trangordnung7.south)-(.35\textwidth,0)$) node[midway,rotate=90,above,yshift=1em,gray]{\footnotesize nationales deutsches Recht};
+	\end{tikzpicture}
+\end{document}
